@@ -1,44 +1,46 @@
 #ifndef DEFINE_H
 #define DEFINE_H
 
+#include <list>
+
 #ifndef EXCUTION_CYCLE
 #define EXCUTION_CYCLE 50000
 #endif
 
 #ifndef NUM_ROUTER
-#define NUM_ROUTER 5
+#define NUM_ROUTER 2
 #endif
 
 #ifndef NUM_CORE
-#define NUM_CORE 7
+#define NUM_CORE 2
 #endif
 //
 #ifndef NODE1_ADDR
-#define NODE1_ADDR 0x0000000f
+#define NODE1_ADDR "00000000000000000000000000001111"
 #endif
 
 #ifndef NODE2_ADDR
-#define NODE2_ADDR 0x000000f0
+#define NODE2_ADDR "00000000000000000000000011110000"
 #endif  
 
 #ifndef NODE3_ADDR
-#define NODE3_ADDR 0x00000f00
+#define NODE3_ADDR "00000000000000000000111100000000"
 #endif  
 
 #ifndef NODE4_ADDR
-#define NODE4_ADDR 0x0000f000
+#define NODE4_ADDR "00000000000000001111000000000000"
 #endif  
 
 #ifndef NODE5_ADDR
-#define NODE5_ADDR 0x000f0000
+#define NODE5_ADDR "00000000000011110000000000000000"
 #endif  
 
 #ifndef NODE6_ADDR
-#define NODE6_ADDR 0x00f00000
+#define NODE6_ADDR "00000000111100000000000000000000"
 #endif  
 
 #ifndef NODE7_ADDR
-#define NODE7_ADDR 0x0f000000
+#define NODE7_ADDR "00001111000000000000000000000000"
 #endif  
 //
 #ifndef ADDR_SIZE
@@ -50,32 +52,57 @@
 #endif
 
 #ifndef MAX_PORT
-#define MAX_PORT 6
+#define MAX_PORT 2
 #endif
 
 #ifndef DATA_BUS_SIZE
-#define DATA_BUS_SIZE 64
+#define DATA_BUS_SIZE 32
 #endif
 
 #ifndef ADDR_BUS_SIZE
-#define ADDR_BUS_SIZE 64
+#define ADDR_BUS_SIZE 32
 #endif
 
 #ifndef EMPTY_BUS
-#define EMPTY_BUS 0xffffffff
+#define EMPTY_BUS "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
 #endif
 
-int TABLE_INFO[NUM_ROUTER][NUM_CORE] ={
-	{1,1,1,1,1,1,1},
-	{2,2,2,2,2,2,2},
-	{3,3,3,3,3,3,3},
-	{4,4,4,4,4,4,4},
-	{5,5,5,5,5,5,5}
+//std::list<list_elem> my_scenario;
+//extern list<list_elem>::iterator itor=my_scenario.begin();
+
+struct list_elem{
+	int src_id;
+	int dest_id;
+
+	int tx_cycle;
+	int *tx_src;
+	int *tx_dest;
+
+	int rx_cycle;
+	int *rx_src;
 };
 
+struct data_elem{
+	int core_id;
+	long data[3];
+}
 
-//#ifndef INDEX_SIZE
-//#define INDEX_SIZE 20
-//#endif
+//std::list<list_elem> my_scenario;
+
+#ifndef Release
+#define Release "00"
+#endif
+
+#ifndef Continue
+#define Continue "01"
+#endif
+
+#ifndef Fail
+#define Fail "10"
+#endif
+
+#ifndef Grant
+#define Grant "11"
+#endif
 
 #endif
